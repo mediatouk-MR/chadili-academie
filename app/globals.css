@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --burgundy: #5a1a2b;
+  --burgundy-deep: #3d0f1d;
+  --burgundy-night: #2a0a15;
+  --gold: #c9a24b;
+  --gold-light: #e7ce8f;
+  --gold-deep: #a9812f;
+  --cream: #f7f1e6;
+  --cream-deep: #efe6d3;
+  --ink: #2a1218;
+
+  --bg: var(--cream);
+  --text: var(--ink);
+  --accent: var(--gold);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Lenis manages scroll; disable native smooth when active */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Arabic (RTL) typography swaps */
+html[dir="rtl"] body {
+  font-family: var(--font-tajawal), system-ui, sans-serif;
+}
+html[dir="rtl"] .font-serif {
+  font-family: var(--font-aref), var(--font-playfair), serif;
+}
+html[dir="rtl"] .font-body {
+  font-family: var(--font-tajawal), sans-serif;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--burgundy-deep);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-deep);
+  border-radius: 6px;
+}
+
+@layer components {
+  .container-luxe {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .text-gold-gradient {
+    @apply bg-gold-gradient bg-clip-text text-transparent;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-gold;
+  }
+  html[dir="rtl"] .eyebrow {
+    @apply tracking-[0.15em];
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold
+      transition-all duration-300 min-h-[48px] focus-visible:outline-none
+      focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-gold-gradient text-burgundy-deep shadow-gold hover:-translate-y-0.5 hover:shadow-luxe;
+  }
+  .btn-ghost {
+    @apply btn border border-gold/50 text-gold hover:bg-gold/10;
+  }
+  .btn-outline-ink {
+    @apply btn border border-burgundy/25 text-burgundy hover:bg-burgundy hover:text-cream;
+  }
+
+  .card-glass {
+    @apply rounded-2xl border border-gold/20 bg-white/5 backdrop-blur-xl;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-gold/50 to-transparent;
+  }
+
+  .link-underline {
+    @apply relative after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left
+      after:scale-x-0 after:bg-gold after:transition-transform after:duration-300 hover:after:scale-x-100;
+  }
+}
+
+@layer utilities {
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+}
+
+/* Reveal defaults (GSAP toggles .is-visible) */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  will-change: transform, opacity;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

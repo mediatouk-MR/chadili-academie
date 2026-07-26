@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7A2A3D"/>
+      <stop offset="1" stop-color="#3D0F1D"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E7CE8F"/>
+      <stop offset="1" stop-color="#C9A24B"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#C9A24B" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#C9A24B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <rect width="400" height="400" fill="url(#glow)"/>
+  <g transform="translate(200 168) scale(3.076923076923077)">
+    <circle r="52" fill="none" stroke="url(#gold)" stroke-width="1.5" opacity="0.55"/>
+    <g transform="translate(-50 -52)" fill="none" stroke="url(#gold)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="50" cy="44" r="14"/><path d="M32 82 q0 -18 18 -18 t18 18"/>
+    </g>
+  </g>
+  <text x="200" y="288" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="22" fill="#E7CE8F">Chadili Académie</text>
+  <text x="200" y="312" text-anchor="middle" font-family="Georgia, serif" letter-spacing="6" font-size="12" fill="#F7F1E6" opacity="0.7">ÉLÈVE</text>
+</svg>
