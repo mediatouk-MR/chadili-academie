@@ -9,3 +9,5 @@ next-env.d.ts
 /dev.log
 /build.log
 /install.log
+
+.vercel
