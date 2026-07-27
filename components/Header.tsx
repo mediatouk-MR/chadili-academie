@@ -29,10 +29,12 @@ export default function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-gold/15 bg-burgundy-deep/80 py-3 backdrop-blur-xl shadow-luxe"
-          : "bg-transparent py-5"
-      }`}
+        open
+          ? "border-b border-gold/15 bg-burgundy-deep shadow-luxe backdrop-blur-xl"
+          : scrolled
+          ? "border-b border-gold/15 bg-burgundy-deep/80 shadow-luxe backdrop-blur-xl"
+          : "bg-transparent"
+      } ${scrolled || open ? "py-3" : "py-5"}`}
     >
       <div className="container-luxe flex items-center justify-between gap-4">
         <Wordmark light priority />
@@ -75,7 +77,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       <div
-        className={`overflow-hidden transition-[max-height] duration-500 lg:hidden ${
+        className={`overflow-hidden bg-burgundy-deep transition-[max-height] duration-500 lg:hidden ${
           open ? "max-h-96" : "max-h-0"
         }`}
       >
