@@ -11,3 +11,9 @@ next-env.d.ts
 /install.log
 
 .vercel
+
+# Raw source trainee videos (kept locally, optimized copies live in public/videos)
+/شعبة الحلويات المغربية/
+/شعبة الحلويات الفرنسية/
+/شعبة الطبخ  المغربي و العالمي/
+/كيك ديزاين/

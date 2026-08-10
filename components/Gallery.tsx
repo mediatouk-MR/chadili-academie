@@ -111,26 +111,28 @@ export default function Gallery() {
         ))}
       </div>
 
-      {/* Featured video — the craft in motion */}
+      {/* Featured videos — the craft in motion */}
       <div className="container-luxe mt-16">
-        <Reveal className="mx-auto max-w-[380px]">
-          <div
-            ref={videoWrap}
-            className="relative aspect-[9/16] overflow-hidden rounded-[2rem] border border-gold/25 shadow-luxe-lg"
-          >
-            <div ref={videoInner} className="absolute inset-0 h-[110%] w-full">
-              <LazyVideo
-                src="/videos/gallery.mp4"
-                poster="/videos/gallery-poster.jpg"
-                className="h-full w-full object-cover"
-              />
+        <Reveal className="flex flex-wrap items-center justify-center gap-6">
+          {[
+            { src: "/videos/gallery.mp4", poster: "/videos/gallery-poster.jpg", label: t.gallery.featured },
+            { src: "/videos/gallery-cake.mp4", poster: "/videos/gallery-cake-poster.jpg", label: "Cake Design" },
+          ].map((v, i) => (
+            <div
+              key={i}
+              ref={i === 0 ? videoWrap : undefined}
+              className="relative aspect-[9/16] w-full max-w-[300px] overflow-hidden rounded-[2rem] border border-gold/25 shadow-luxe-lg sm:max-w-[320px]"
+            >
+              <div ref={i === 0 ? videoInner : undefined} className="absolute inset-0 h-[110%] w-full">
+                <LazyVideo src={v.src} poster={v.poster} className="h-full w-full object-cover" />
+              </div>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-burgundy-deep/70 via-transparent to-transparent" />
+              <span className="pointer-events-none absolute inset-x-0 bottom-5 flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-[0.15em] text-cream">
+                <PlayCircle weight="fill" className="h-5 w-5 text-gold" />
+                {v.label}
+              </span>
             </div>
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-burgundy-deep/70 via-transparent to-transparent" />
-            <span className="pointer-events-none absolute inset-x-0 bottom-5 flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-cream">
-              <PlayCircle weight="fill" className="h-5 w-5 text-gold" />
-              {t.gallery.featured}
-            </span>
-          </div>
+          ))}
         </Reveal>
       </div>
     </section>
