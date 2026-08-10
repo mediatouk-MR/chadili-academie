@@ -11,6 +11,7 @@ import {
   Broadcast,
   HandHeart,
   UsersThree,
+  PaintBrush,
   type IconProps,
 } from "@phosphor-icons/react";
 import { ComponentType } from "react";
@@ -26,6 +27,7 @@ const MAP: Record<string, ComponentType<IconProps>> = {
   Broadcast,
   HandHeart,
   UsersThree,
+  PaintBrush,
 };
 
 export default function Icon({
